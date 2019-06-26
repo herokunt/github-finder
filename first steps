@@ -1,3 +1,0 @@
-1. open terminal window in project directory
-2. run (Node is required): npx create-react-app .
-NOTE: note the dot at the end to specify current directory
