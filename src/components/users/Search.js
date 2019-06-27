@@ -30,7 +30,7 @@ const Search = () => {
           <form className="field" onSubmit={onSubmit}>
             <div className="field">
               <div className="control">
-                <input className="input mt-2" autofocus type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
+                <input className="input mt-2" autoFocus type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
               </div>
             </div>
             <div className="field is-grouped">
