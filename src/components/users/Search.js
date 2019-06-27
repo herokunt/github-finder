@@ -16,7 +16,7 @@ const Search = () => {
   const onSubmit = e => {
     e.preventDefault()
     if(text === ''){
-      setAlert('Please enter a search value', 'is-danger')
+      setAlert('Please enter a search value', 'alert')
     } else {
       searchUsers(text) // this fn comes as a 'prop' from App Component
       setText('')

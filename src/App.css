@@ -29,6 +29,17 @@
   align-content: center;
 }
 
+.alert {
+  width: 25%;
+  margin: 0.4rem auto;
+  background: hsl(348, 90%, 66%);
+  border: 2px solid hsl(348, 100%, 55%);
+  border-radius: 3px;
+  color: #f4f4f4;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+}
+
 .navbar-item li a {
   color: #f4f4f4;
   padding: 0 1rem;
