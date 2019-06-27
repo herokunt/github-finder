@@ -1,11 +1,14 @@
-import React, { useState }from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, useState, useContext } from 'react'
+import GitHubContext from '../../context/github/githubContext'
+import AlertContext from '../../context/alert/alertContext'
 
-const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => {
+const Search = () => {
 
-  // This is the component state now, we define each piece as a variable by
-  // destructuring a name along with an associated method, from useState().
-  // useState() is passed in a default value, in this case en empty string.
+  const githubContext = useContext(GitHubContext)
+  const alertContext = useContext(AlertContext)
+  const { loading, searchUsers, clearUsers } = githubContext
+  const { setAlert } = alertContext
+
   const [text, setText] = useState('')
 
   const onChange = e => setText(e.target.value)
@@ -21,21 +24,28 @@ const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => {
   }
 
   return (
-    <div>
-      <form className="form" onSubmit={onSubmit}>
-        <input type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
-        <input type="submit" value="Search" className="btn btn-dark btn-block" />
-      </form>
-      {showClear && <button value="Clear" className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>}
-    </div>
+    <Fragment>
+      <div className="columns">
+        <div className="column is-6 is-offset-3">
+          <form className="field" onSubmit={onSubmit}>
+            <div className="field">
+              <div className="control">
+                <input className="input mt-2" autofocus type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
+              </div>
+            </div>
+            <div className="field is-grouped">
+              <div className="control">
+                <button className={loading ? 'button is-dark is-loading' : 'button is-dark'} type="submit">Search</button>
+              </div>
+              <div className="control">
+                {githubContext.users.length > 0 && <button className={loading ? 'is-invisible' : 'button is-dark is-outlined'} onClick={clearUsers}>Clear</button>}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Fragment>
   )
-}
-
-Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
-  clearUsers: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
-  setAlert: PropTypes.func.isRequired
 }
 
 export default Search

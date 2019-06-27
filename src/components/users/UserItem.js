@@ -7,14 +7,21 @@ const UserItem = (props) => {
 
   // destructure the properties from the 'user' prop that is passed in for cleaner and shorter code
   // Note above we could destructure directly in the function arguments (commented out)
-  const { login, avatar_url, html_url } = props.user
+  const { login, avatar_url, html_url, followers_url } = props.user
 
   return (
-    <div className="card text-center">
-      <img src={avatar_url} alt="" className="round-img" style={{ width: '60px' }}/>
-      <h3>{login}</h3>
-      <div>
-        <Link to={`/user/${login}`} className="btn btn-dark btn-sm my-1">More</Link>
+
+    <div className="card">
+      <div class="card-image">
+      </div>
+      <div className="card-content">
+      <div className="content has-text-centered">
+        <figure class="image is-centered is-128x128">
+          <img className="is-rounded" src={avatar_url} alt="Placeholder image"/>
+        </figure>
+          <p className="title is-4">{login}</p>
+          <Link to={`/user/${login}`} className="button is-dark">See Profile</Link>
+        </div>
       </div>
     </div>
   )

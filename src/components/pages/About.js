@@ -1,12 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 const About = () => {
   return (
-    <Fragment>
-      <h1>About GitHub Finder</h1>
-      <p>Is an app to find users fromr GitHub</p>
-      <p>Made with React!</p>
-    </Fragment>
+    <div className="container">
+      <section className="section has-text-centered">
+        <h2 className="title">GitHub Finder</h2>
+        <p className="subtitle is-size-5">An app to find users from GitHub</p>
+        <p>Made with React 16.8 - Context API + Hooks</p>
+      </section>
+    </div>
   )
 }
 
