@@ -29,7 +29,7 @@
   align-content: center;
 }
 
-.alert {
+/* .alert {
   width: 25%;
   margin: 0.4rem auto;
   background: hsl(348, 90%, 66%);
@@ -38,9 +38,24 @@
   color: #f4f4f4;
   padding: 0.6rem;
   font-size: 1.2rem;
-}
+} */
 
 .navbar-item li a {
   color: #f4f4f4;
   padding: 0 1rem;
+}
+
+.mobile-grid {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+@media screen and (max-width: 768px){
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

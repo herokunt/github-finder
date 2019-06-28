@@ -10,7 +10,7 @@ const Alert = () => {
     return ''
   } else {
     return (
-      <div className="has-text-centered">
+      <div className="has-text-centered container notification is-danger">
         <p className={alert.type}>{alert.message}</p>
       </div>
     )

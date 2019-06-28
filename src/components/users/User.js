@@ -32,8 +32,8 @@ const User = ({ match }) => {
             <h1 className="title is-size-5">{name}</h1>
             <h2 className="subtitle">{location}</h2>
             <ul>
-              <strong>Hireable:</strong> {' '}
-              {hireable ? (<i className="fas fa-check"/>) : (<i className="fas fa-times-circle"/>)}
+              <strong>Hireable:</strong>
+              {hireable ? (<span className="icon has-text-success"><i class="fas fa-check"></i></span>) : (<span className="icon has-text-danger"><i class="fas fa-ban"></i></span>)}
               <li>{login && <Fragment><strong>Username: </strong> {login}</Fragment>}</li>
               <li>{company && <Fragment><strong>Company: </strong> {company}</Fragment>}</li>
               <li>{blog && <Fragment><strong>Website: </strong> {blog}</Fragment>}</li>

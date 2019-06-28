@@ -12,11 +12,9 @@ const UserItem = (props) => {
   return (
 
     <div className="card">
-      <div class="card-image">
-      </div>
       <div className="card-content">
       <div className="content has-text-centered">
-        <figure class="image is-centered is-128x128">
+        <figure className="image is-centered is-128x128">
           <img className="is-rounded" src={avatar_url} alt="Placeholder image"/>
         </figure>
           <p className="title is-4">{login}</p>

@@ -7,7 +7,7 @@ const Search = () => {
   const githubContext = useContext(GitHubContext)
   const alertContext = useContext(AlertContext)
   const { loading, searchUsers, clearUsers } = githubContext
-  const { setAlert } = alertContext
+  const { alert, setAlert } = alertContext
 
   const [text, setText] = useState('')
 
@@ -30,12 +30,13 @@ const Search = () => {
           <form className="field" onSubmit={onSubmit}>
             <div className="field">
               <div className="control">
-                <input className="input mt-2" autoFocus type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
+                <input className={alert == null ? 'input mt-2' : 'input mt-2 is-danger'} autoFocus type="text" name="text" placeholder="Search Users..." value={text} onChange={onChange} />
+                {alert && <p class="help is-danger">Please enter a search value</p>}
               </div>
             </div>
             <div className="field is-grouped">
               <div className="control">
-                <button className={loading ? 'button is-dark is-loading' : 'button is-dark'} type="submit">Search</button>
+                <button className={loading ? 'button is-dark is-loading is-disabled' : 'button is-dark'} type="submit">Search</button>
               </div>
               <div className="control">
                 {githubContext.users.length > 0 && <button className={loading ? 'is-invisible' : 'button is-dark is-outlined'} onClick={clearUsers}>Clear</button>}
