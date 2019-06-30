@@ -20,6 +20,10 @@
   margin: 2rem 0;
 }
 
+.no-decoration {
+  text-decoration: none;
+}
+
 .fullheight {
   height: 100%;
   display: flex;
@@ -51,6 +55,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
+}
+
+.pagination-link.is-current {
+  background-color: #333;
+  border-color: #333;
 }
 
 @media screen and (max-width: 768px){

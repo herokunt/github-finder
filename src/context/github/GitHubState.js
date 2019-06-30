@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import GithubContext from './githubContext'
 import GithubReducer from './githubReducer'
-import { SEARCH_USERS, GET_USER, CLEAR_USERS, GET_REPOS, SET_LOADING, SET_ALERT, REMOVE_ALERT } from '../types'
+import { SEARCH_USERS, GET_USER, CLEAR_USERS, GET_REPOS, SET_LOADING, PAGINATE } from '../types'
 
 // Setting up environment variables for production in Netlify
 let gitHubClientId
@@ -22,7 +22,9 @@ const GithubState = (props) => {
     users: [],
     user: {},
     repos: [],
-    loading: false
+    loading: false,
+    resultsPerPage: 12,
+    currentPage: 1
   }
 
   const [state, dispatch] = useReducer(GithubReducer, initialState)
@@ -32,11 +34,19 @@ const GithubState = (props) => {
     setLoading()
     const res = await fetch(`https://api.github.com/search/users?q=${text}&client_id=${gitHubClientId}&client_secret=${gitHubClientSecret}`)
     const data = await res.json()
-    console.log(data)
 
     dispatch({
       type: SEARCH_USERS,
       payload: data.items
+    })
+  }
+
+  // Paginate function
+  const paginate = (pageNumber) => {
+    setLoading()
+    dispatch({
+      type: PAGINATE,
+      payload: pageNumber
     })
   }
 
@@ -57,7 +67,6 @@ const GithubState = (props) => {
     setLoading()
     const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${gitHubClientId}&client_secret=${gitHubClientSecret}`)
     const data = await res.json()
-
     dispatch({
       type: GET_REPOS,
       payload: data
@@ -78,7 +87,10 @@ const GithubState = (props) => {
       user: state.user,
       repos: state.repos,
       loading: state.loading,
+      resultsPerPage: state.resultsPerPage,
+      currentPage: state.currentPage,
       searchUsers,
+      paginate,
       clearUsers,
       getUser,
       getUserRepos

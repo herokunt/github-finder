@@ -14,7 +14,7 @@ const User = ({ match }) => {
     // eslint-disable-next-line
   }, [])
 
-  const { name, avatar_url, location, bio, blog, company, login, html_url, followers, following, public_repos, public_gists, hireable } = user
+  const { name, avatar_url, location, bio, blog, company, login, html_url, followers_url, following_url, repos_url, gists_url, hireable } = user
 
   if (loading) return <Spinner />
 
@@ -33,7 +33,7 @@ const User = ({ match }) => {
             <h2 className="subtitle">{location}</h2>
             <ul>
               <strong>Hireable:</strong>
-              {hireable ? (<span className="icon has-text-success"><i class="fas fa-check"></i></span>) : (<span className="icon has-text-danger"><i class="fas fa-ban"></i></span>)}
+              {hireable ? (<span className="icon has-text-success"><i className="fas fa-check"></i></span>) : (<span className="icon has-text-danger"><i className="fas fa-ban"></i></span>)}
               <li>{login && <Fragment><strong>Username: </strong> {login}</Fragment>}</li>
               <li>{company && <Fragment><strong>Company: </strong> {company}</Fragment>}</li>
               <li>{blog && <Fragment><strong>Website: </strong> {blog}</Fragment>}</li>
@@ -53,6 +53,22 @@ const User = ({ match }) => {
               </Fragment>
             )}
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item has-text-centered">
+            <a className="button is-small is-primary" href={followers_url}>Followers</a>
+          </div>
+          <div className="level-item has-text-centered">
+            <a className="button is-small is-info" href={following_url}>Following</a>
+          </div>
+          <div className="level-item has-text-centered">
+            <a className="button is-small is-link" href={repos_url}>Repos</a>
+          </div>
+          <div className="level-item has-text-centered">
+            <a className="button is-small is-success" href={gists_url}>Gists</a>
           </div>
         </div>
       </div>

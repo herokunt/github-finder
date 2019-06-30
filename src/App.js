@@ -4,8 +4,6 @@ import Navbar from './components/layout/Navbar'
 import User from './components/users/User'
 import Home from './components/pages/Home'
 import NotFound from './components/pages/NotFound'
-// import Alert from './components/layout/Alert'
-// <Alert />
 import About from './components/pages/About'
 import GitHubState from './context/github/GitHubState'
 import AlertState from './context/alert/AlertState'
@@ -20,7 +18,6 @@ const App = () => {
           <div className="App">
             <Navbar />
             <Switch>
-            // NOTE! the props below come from the ROUTER, things like 'match', 'history' and others
               <Route exact path='/' component={Home} />
               <Route exact path='/about' component={About} />
               <Route exact path='/user/:login' component={User} />

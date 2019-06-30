@@ -7,20 +7,36 @@ import GitHubContext from '../../context/github/githubContext'
 
 const Users = () => {
   const githubContext = useContext(GitHubContext)
-  const { loading, users } = githubContext
+  const { users, resultsPerPage, currentPage, paginate } = githubContext
+
+  let pageNumbers = []
+
+  for(let i = 1; i <= Math.ceil(users.length / resultsPerPage); i++){
+    pageNumbers.push(i)
+  }
+
+  const indexOfLastUser = currentPage * resultsPerPage
+  const indexOfFirstUser = indexOfLastUser - resultsPerPage
+
+  // Do not confuse slice with splice!!
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
+
   return (
-    <div className="mobile-grid">
-    {users.map(user => (
-      <UserItem key={user.id} user={user} />
-    ))}
+    <div>
+      <div className="mobile-grid">
+      {currentUsers.map(user =>
+        <UserItem key={user.id} user={user} />
+      )}
+      </div>
+      <nav className="pagination is-centered my-2">
+        <ul className="pagination-list">
+          {pageNumbers.map(page => {
+            return <li key={page}><button onClick={() => paginate(page)} className={currentPage === page ? "pagination-link is-current" : "pagination-link"}>{page}</button></li>
+          })}
+        </ul>
+      </nav>)
     </div>
   )
-}
-
-// In case we want to define some styles but not inline
-const usersStyle = {
-  width: '80%',
-  margin: 'auto'
 }
 
 export default Users

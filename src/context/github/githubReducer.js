@@ -1,4 +1,4 @@
-import { SEARCH_USERS, GET_USER, CLEAR_USERS, GET_REPOS, SET_LOADING, SET_ALERT, REMOVE_ALERT } from '../types'
+import { SEARCH_USERS, GET_USER, CLEAR_USERS, GET_REPOS, SET_LOADING, PAGINATE } from '../types'
 
 export default (state, action) => {
   switch(action.type){
@@ -30,6 +30,12 @@ export default (state, action) => {
       return {
         ...state,
         loading: true
+      }
+    case PAGINATE:
+      return {
+        ...state,
+        currentPage: action.payload,
+        loading: false
       }
     default: return state
   }
