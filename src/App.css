@@ -62,6 +62,10 @@
   border-color: #333;
 }
 
+.pagination-link:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px){
   .mobile-grid {
     display: grid;
